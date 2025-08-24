@@ -35,8 +35,8 @@ services:
       - "80:80"
     depends_on:
       - backend
-    environment:
-      VITE_API_URL: "http://localhost:3000/api"
+    env_file:
+      - ./frontend/.env.docker
 
 volumes:
   pgdata:
