@@ -12,6 +12,7 @@ import Projects from "./pages/Projects";
 
 export default function App() {
   const [token, setToken] = useState<string | null>(null);
+
   useEffect(() => {
     const saved = Cookies.get("token");
     if (saved) setToken(saved);
@@ -44,25 +45,19 @@ export default function App() {
         <Route
           path="/"
           element={
-            token ? (
-              <Projects token={token} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/login" />
-            )
+            token ? <Projects token={token} onLogout={handleLogout} /> : <Navigate to="/login" />
           }
         />
         <Route
           path="/login"
-          element={
-            token ? <Navigate to="/" /> : <Login onLogin={handleLogin} />
-          }
+          element={token ? <Navigate to="/" /> : <Login onLogin={handleLogin} />}
         />
         <Route
           path="/register"
-          element={
-            token ? <Navigate to="/" /> : <Register onRegister={handleLogin} />
-          }
+          element={token ? <Navigate to="/" /> : <Register onRegister={handleLogin} />}
         />
+        {/* Catch-all route */}
+        <Route path="*" element={<Navigate to={token ? "/" : "/login"} />} />
       </Routes>
     </Router>
   );
