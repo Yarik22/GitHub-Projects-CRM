@@ -148,8 +148,6 @@
 
 ## Інструкція по запуску
 
-Клонувати репозиторій
-
 ```bash
  git clone https://github.com/Yarik22/GitHub-Projects-CRM.git
  cd GitHub-Projects-CRM 
